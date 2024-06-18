@@ -1,0 +1,41 @@
+.notification-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 600px;
+    margin: 20px auto;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .friend-request-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .friend-request-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .friend-request-buttons button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .friend-request-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
