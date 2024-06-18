@@ -1,6 +1,16 @@
 {
   "type": "module",
   "proxy":"https://localhost:5500/",
+    "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+   "migrate": "prisma migrate deploy src/prisma",
+    "generate": "prisma generate src/prisma",
+    "setup": "npm install && npm run generate && npm run migrate"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema.prisma"
+  },
   "dependencies": {
     "@prisma/client": "^5.14.0",
     "body-parser": "^1.20.2",
