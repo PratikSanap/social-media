@@ -1,0 +1,116 @@
+datasource db {
+  provider = "postgresql" // You can change this to match your preferred database
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  name           String    @unique
+  email          String    @unique
+  password       String
+  profilePicture String?
+  bio            String?
+  interests      String?
+  posts          Post[]
+  comments       Comment[]
+  likes          Like[]
+  messagesSent   Message[] @relation("Sender")
+  messagesReceived Message[] @relation("Recipient")
+  notifications  Notification[]
+  groups         Group[]   
+  GroupPosts   GroupPost[]
+  refreshToken   String?
+   sentFriendRequests  FriendRequest[] @relation("SentRequests")
+  receivedFriendRequests FriendRequest[] @relation("ReceivedRequests")
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  content   String
+  createdAt DateTime  @default(now())
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  comments  Comment[]
+  likes     Like[]
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  content   String
+  postId    Int
+  post      Post      @relation(fields: [postId], references: [id])
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+}
+
+model Like {
+  id     Int    @id @default(autoincrement())
+  postId Int
+  post   Post   @relation(fields: [postId], references: [id])
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  content     String
+  senderId    Int
+  recipientId Int
+  sender      User     @relation("Sender", fields: [senderId], references: [id])
+  recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Notification {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  type      String
+  message   String
+  read      Boolean   @default(false)
+  createdAt DateTime  @default(now())
+}
+
+model Group {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+ userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  posts       GroupPost[]
+}
+
+model GroupPost {
+  id        Int       @id @default(autoincrement())
+  content   String
+  mediaUrl  String?
+  groupId   Int
+  group     Group     @relation(fields: [groupId], references: [id])
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+}
+
+model FriendRequest {
+  id          Int       @id @default(autoincrement())
+  fromUser    User      @relation("SentRequests", fields: [fromUserId], references: [id])
+  fromUserId  Int
+  toUser      User      @relation("ReceivedRequests", fields: [toUserId], references: [id])
+  toUserId    Int
+  createdAt   DateTime  @default(now())
+}
+
+
+model friend {
+  id       Int @id @default(autoincrement())
+  user1    Int
+  user2    Int
+
+  @@unique([user1, user2])
+}
