@@ -1,0 +1,87 @@
+/* ChatPage.css */
+.chat-container {
+    width: 600px;
+    margin: 0 auto;
+    padding-top: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .chat-container:hover {
+    transform: scale(1.03);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .messages {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .message.sent {
+    background: #d4f7d4;
+    text-align: right;
+  }
+  
+  .message.received {
+    background: #f1f1f1;
+    text-align: left;
+  }
+  
+  .message:hover {
+    transform: scale(1.02);
+  }
+  
+  .input-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  button {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg, #5b75f3, #9d67d1);
+  }
+  
