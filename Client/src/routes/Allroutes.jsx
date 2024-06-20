@@ -21,7 +21,6 @@ export const router = createBrowserRouter(
       <Route path="/notifications" element={<NotificationsPage/>}></Route>
       <Route path="/chat" element={<FriendsList/>}></Route>
       <Route path='/chat/:friendId' element={<ChatPage/>}></Route>
-      {/*search patient by army no*/}
       
       </>
   )
